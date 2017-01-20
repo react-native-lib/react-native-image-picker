@@ -3,10 +3,10 @@
 const { NativeModules } = require('react-native');
 const { ImagePickerManager } = NativeModules;
 const DEFAULT_OPTIONS = {
-  title: 'Select a Photo',
-  cancelButtonTitle: 'Cancel',
-  takePhotoButtonTitle: 'Take Photo…',
-  chooseFromLibraryButtonTitle: 'Choose from Library…',
+  title: '选择图片',
+  cancelButtonTitle: '取消',
+  takePhotoButtonTitle: '拍照',
+  chooseFromLibraryButtonTitle: '相册',
   quality: 1.0,
   allowsEditing: false
 };
@@ -17,6 +17,9 @@ module.exports = {
     if (typeof options === 'function') {
       callback = options;
       options = {};
+    }
+    if(!ImagePickerManager){
+      return;
     }
     return ImagePickerManager.showImagePicker({...DEFAULT_OPTIONS, ...options}, callback)
   }
